@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Login</title>
+    <style>
+        @font-face {
+            font-family: 'BinancePlex';
+            src: url('BinancePlex-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        body {
+            font-family: 'BinancePlex', Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #1E1E1E;
+            padding: 10px 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            position: relative;
+            height: 550px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        .header {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header img {
+            width: 30px;
+            height: 30px;
+        }
+        .header span {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #F0B90B;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin: 75px 0 30px;
+            margin-left: 12px;
+        }
+        label {
+            margin-left: 12px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            max-width: 320px;
+            padding: 15px;
+            margin: 12px 0 20px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #F0B90B;
+            box-shadow: 0 0 10px 2px #F0B90B;
+        }
+        input.error {
+            border-color: red;
+            box-shadow: 0 0 10px 2px red;
+        }
+        button {
+            width: 100%;
+            max-width: 350px;
+            padding: 10px;
+            background-color: #F0B90B;
+            border: none;
+            color: #121212;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #444;
+        }
+        .divider:not(:empty)::before {
+            margin-right: 10px;
+        }
+        .divider:not(:empty)::after {
+            margin-left: 10px;
+        }
+        .oauth-buttons button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            background-color: #222;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .oauth-buttons img {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+        .oauth-buttons button span {
+            flex: 1;
+            text-align: center;
+        }
+        .create-account a {
+            color: #F0B90B;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .create-account a:hover {
+            color: #F0B90B;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+        .create-account {
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 250px;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+        .footer a {
+            color: #F0B90B;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        #errorMessage {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance Logo">
+            <span>Binance</span>
+        </div>
+        
+        <div id="emailScreen">
+            <h1>Log in</h1>
+            <form id="loginForm">
+                <label for="email">Email/Phone number</label>
+                <input type="text" id="email" placeholder="Email/Phone (without country code)" required>
+                <div id="errorMessage"></div>
+                <button type="submit">Next</button>
+            </form>
+        </div>
+
+        <div id="passwordScreen" class="hidden">
+            <h1>Enter your password</h1>
+            <form id="passwordForm">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="divider">or</div>
+        <div class="oauth-buttons">
+            <button>
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"> <span>Continue with Google</span>
+            </button>
+            <button>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/1200px-Apple_logo_grey.svg.png" alt="Apple"> <span>Continue with Apple</span>
+            </button>
+        </div>
+    </div>
+    <div class="create-account">
+        <a href="#">Create a Binance Account</a>
+    </div>
+
+    <div class="footer">
+        <a href="#">Cookies</a> | 
+        <a href="https://www.binance.com/en/terms">Terms of Service</a> | 
+        <a href="https://www.binance.com/en/privacy">Privacy</a>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            var emailInput = document.getElementById('email');
+            var errorMessage = document.getElementById('errorMessage');
+
+            // Regular expressions for validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var phoneRegex = /^\d{10,15}$/; // 10 to 15 digits, without spaces or special characters
+
+            var inputValue = emailInput.value.trim();
+
+            if (inputValue === "") {
+                emailInput.classList.add('error');
+                errorMessage.textContent = "Please enter your email or phone number.";
+                errorMessage.style.display = "block";
+            } else if (!emailRegex.test(inputValue) && !phoneRegex.test(inputValue)) {
+                emailInput.classList.add('error');
+                errorMessage.textContent = "Please enter a valid email or phone number.";
+                errorMessage.style.display = "block";
+            } else {
+                emailInput.classList.remove('error');
+                errorMessage.style.display = "none";
+
+                // Transition to password screen
+                document.getElementById('emailScreen').classList.add('hidden');
+                document.getElementById('passwordScreen').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            var passwordInput = document.getElementById('password');
+
+            if (passwordInput.value.trim() === "") {
+                alert("Please enter your password.");
+            } else {
+                alert("Login successful!");
+                // Redirect or perform further actions
+            }
+        });
+    </script>
+</body>
+</html>
