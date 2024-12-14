@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account</title>
+    <style>
+        @font-face {
+            font-family: 'BinancePlex';
+            src: url('BinancePlex-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        body {
+            font-family: 'BinancePlex', Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        label {
+            margin-left: 12px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            max-width: 320px;
+            padding: 15px;
+            margin: 12px 0 20px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #F0B90B;
+            box-shadow: 0 0 10px 2px #F0B90B;
+        }
+        button {
+            width: 100%;
+            max-width: 350px;
+            padding: 10px;
+            background-color: #F0B90B;
+            border: none;
+            color: #121212;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+        .footer a {
+            color: #F0B90B;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Account</h1>
+        <form id="signupForm">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Privacy Policy</a>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            var emailInput = document.getElementById('email');
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var confirmPasswordInput = document.getElementById('confirmPassword');
+
+            var errorMessage = "";
+
+            if (emailInput.value.trim() === "") {
+                errorMessage = "Email is required!";
+            } else if (usernameInput.value.trim() === "") {
+                errorMessage = "Username is required!";
+            } else if (passwordInput.value.trim() === "") {
+                errorMessage = "Password is required!";
+            } else if (confirmPasswordInput.value !== passwordInput.value) {
+                errorMessage = "Passwords do not match!";
+            }
+
+            if (errorMessage) {
+                alert(errorMessage);
+            } else {
+                alert("Account created successfully!");
+                // You can add further logic to redirect the user or save the data
+            }
+        });
+    </script>
+</body>
+</html>
